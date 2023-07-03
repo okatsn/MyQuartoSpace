@@ -2,9 +2,9 @@
 version: '3'
 
 services:
-  devj:
+  devjq:
     # service name is arbitrary
-    image: my-julia-space
+    image: my-quarto-space
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
@@ -15,7 +15,7 @@ services:
         SUB_PROJECT_DIR: /home/jovyan/my-julia-space/subprojects # KEYNOTE: also check "gitProjectManager.baseProjectsFolders" in devcontainer.json that if GPM can get JULIA_PKG_DEVDIR and SUB_PROJECT_DIR
     init: true
     # See https://docs.docker.com/compose/compose-file/compose-file-v3/#init
-    container_name: my-julia-space
+    container_name: my-quarto-space
     environment:
       # https://cheaster.blogspot.com/2020/06/docker-composeyml-container-timezone.html
       - TZ=Asia/Taipei
