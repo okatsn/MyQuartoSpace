@@ -1,0 +1,41 @@
+# This is [Compose file](https://docs.docker.com/compose/compose-file/compose-file-v3/)
+version: '3'
+
+services:
+  devj:
+    # service name is arbitrary
+    image: my-julia-space
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        VARIANT: "1.9.1"
+        WORKSPACE_DIR: /home/jovyan/my-julia-space #can be arbitrary; it's not required to be identical with the project directory in your WSL unbuntu (20.04)
+        JULIA_PKG_DEVDIR: /home/jovyan/.julia/dev # just let it be default. See [JULIA_PKG_DEVDIR](https://docs.julialang.org/en/v1/manual/environment-variables/#JULIA_PKG_DEVDIR). Be aware that some tests will depend on JULIA_PKG_DEVDIR.
+        SUB_PROJECT_DIR: /home/jovyan/my-julia-space/subprojects # KEYNOTE: also check "gitProjectManager.baseProjectsFolders" in devcontainer.json that if GPM can get JULIA_PKG_DEVDIR and SUB_PROJECT_DIR
+    init: true
+    # See https://docs.docker.com/compose/compose-file/compose-file-v3/#init
+    container_name: my-julia-space
+    environment:
+      # https://cheaster.blogspot.com/2020/06/docker-composeyml-container-timezone.html
+      - TZ=Asia/Taipei
+    volumes:
+      # KEYNOTE: files in volumes will not be part of the image; you can push the image safely even if there are sensitive informations in volumes
+      # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
+      - ..:/home/jovyan/my-julia-space
+      # # KEYNOTE: Define volumes in service
+      # Persistent the julia depot
+      - julia-depot:/home/jovyan/.julia
+      # # Avoid reinstall vscode extensions
+      # KEYNOTE: make sure /home/$NB_USER/.vscode-server/extensions is `mkdir`ed in Dockerfile
+      - vscode-extensions:/home/jovyan/.vscode-server/extensions
+      # Uncomment the next line to use Docker from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker-compose for details.
+      # - /var/run/docker.sock:/var/run/docker.sock
+      # Overrides default command so things don't shut down after the process ends.
+    command: sh -c "sleep infinity"
+    # KEYNOTE: If you didn't have env.py in tasks/, an error will occurred executing this command; thus there is nothing running and container will shut down immediatedly after it starts
+
+volumes:
+  # KEYNOTE: Those defined volumes in service should be declared in the root level
+  julia-depot:
+  vscode-extensions:
