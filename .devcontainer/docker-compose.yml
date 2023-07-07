@@ -16,7 +16,10 @@ services:
     volumes:
       - ..:/home/jovyan/devspace
       - julia-depot:/home/jovyan/.julia
-    command: sh -c "sleep infinity"
+    command:
+      - sh
+      - -c
+      - julia --project=@. -e 'using Pkg; Pkg.build("IJulia")'; sleep infinity
 
 volumes:
   # KEYNOTE: Those defined volumes in service should be declared in the root level
