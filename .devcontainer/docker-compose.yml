@@ -19,7 +19,16 @@ services:
     command:
       - sh
       - -c
-      - julia --project=@. -e 'using Pkg; Pkg.build("IJulia")'; sleep infinity
+      - sleep infinity
+      # - julia --project=@. -e 'using Pkg; Pkg.build("IJulia")'; sleep infinity
+      # KEYNOTE:
+      # - Use semi-colon to separate command
+      # - build IJulia everytime is nonsense. IJulia should be built when it is installed in a certain environment. See https://pkgdocs.julialang.org/v1/managing-packages/#Building-packages
+      # - `Render` error may occur due to the followings:
+      #   - It is not `instantiate`d in the opening project.
+      #   - It is not `precompile`d in the opening project.
+      #   - These are the reasons that cause julia kernel died.
+      # - `Pkg.build("IJulia")` is required only for [Updating Julia and IJulia](https://julialang.github.io/IJulia.jl/stable/manual/installation/#Updating-Julia-and-IJulia)
 
 volumes:
   # KEYNOTE: Those defined volumes in service should be declared in the root level
