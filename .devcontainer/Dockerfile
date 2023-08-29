@@ -13,6 +13,4 @@ COPY .devcontainer/startup_ijulia.jl /home/$NB_USER/.julia/config/startup_ijulia
 
 # Copy the built binary from the Rust build stage to the final stage
 COPY --from=build0 /bin/typst /bin
-# referring the official Dockerfile: https://github.com/typst/typst/blob/main/Dockerfile
-# - typst was copied from /app/.../typst to  /bin
-# - it now lives in /bin/typst
+# Please refer https://github.com/okatsn/my-typst-space
