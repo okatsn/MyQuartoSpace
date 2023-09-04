@@ -24,7 +24,9 @@
                 // Typst extensions
                 "nvarner.typst-lsp",
                 "mgt19937.typst-preview",
-                "oijaz.unicode-latex"
+                "oijaz.unicode-latex",
+                // Other
+                "janisdd.vscode-edit-csv" // for editing CSV files in vscode as table
             ],
             "settings": {
                 "gitProjectManager.baseProjectsFolders": [
