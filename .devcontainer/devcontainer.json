@@ -26,7 +26,8 @@
                 "mgt19937.typst-preview",
                 "oijaz.unicode-latex",
                 // Other
-                "janisdd.vscode-edit-csv" // for editing CSV files in vscode as table
+                "janisdd.vscode-edit-csv", // for editing CSV files in vscode as table               
+                "iterative.dvc" // data version control
             ],
             "settings": {
                 "gitProjectManager.baseProjectsFolders": [
