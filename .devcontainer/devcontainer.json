@@ -13,7 +13,7 @@
             // See https://containers.dev/supporting
             "extensions": [
                 // KEYNOTE: Please refer "dev.containers.defaultExtensions" in  settings.json (Ctrl+Shift+P and Open User Settings (JSON)) for Common Extensions
-                // SECTION: MyJuliaSpace Exclusive
+                // Julia, Python and Quarto
                 "julialang.language-julia", // julia
                 "colinfang.markdown-julia",
                 "ms-python.python", // python
@@ -44,6 +44,7 @@
                 "python.terminal.activateEnvironment": false,
                 // KEYNOTE: For general settings, please Other settings please refer https://github.com/okatsn/MyVSCodeSettings
                 "dev.containers.cacheVolume": true
+                // to apply your extensions and settings in .devcontainer/devcontainer.json with (true) or without (false) cache.
             }
         }
     }

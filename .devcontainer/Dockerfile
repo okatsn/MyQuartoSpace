@@ -1,10 +1,24 @@
 # Build stage
 FROM okatsn/my-typst-space AS build0
 
-FROM okatsn/my-julia-space
+FROM okatsn/my-julia-space:v202309
 
 USER $NB_USER
 WORKDIR $WORKSPACE_DIR
+
+ARG VSCODE_PATH="Foo"
+ARG VSCODE_INSIDER_PATH="Bar"
+# # Set enviroment variable
+ENV VSCODE_PATH=${VSCODE_PATH} \
+    VSCODE_INSIDER_PATH=${VSCODE_INSIDER_PATH}
+
+RUN mkdir -p $VSCODE_PATH/extensions \
+    $VSCODE_INSIDER_PATH/extensions \
+    $SUB_PROJECT_DIR \
+    && chown -R $NB_USER \
+    $VSCODE_PATH \
+    $VSCODE_INSIDER_PATH
+
 
 COPY .devcontainer/startup_ijulia.jl /home/$NB_USER/.julia/config/startup_ijulia.jl
 
