@@ -20,7 +20,14 @@
                 "ms-python.vscode-pylance",
                 "quarto.quarto",
                 "bungcip.better-toml",
-                "ms-vscode.live-server"
+                "ms-vscode.live-server",
+                // Typst extensions
+                "nvarner.typst-lsp",
+                "mgt19937.typst-preview",
+                "oijaz.unicode-latex",
+                // Other
+                "janisdd.vscode-edit-csv", // for editing CSV files in vscode as table               
+                "iterative.dvc" // data version control
             ],
             "settings": {
                 "gitProjectManager.baseProjectsFolders": [
