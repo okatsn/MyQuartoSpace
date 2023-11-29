@@ -1,7 +1,7 @@
 # Build stage
 FROM okatsn/my-typst-space AS build0
 
-FROM okatsn/my-julia-space:v202309
+FROM okatsn/my-julia-space:v1.9.4
 
 USER $NB_USER
 WORKDIR $WORKSPACE_DIR
